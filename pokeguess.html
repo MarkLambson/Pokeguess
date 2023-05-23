@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PokeGuess</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/c3e68e9bd6.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>Who's That Pokémon?</h1>
+    <div class="content">
+        <div class="console">
+            <div class="frame">
+                <div class="screen">
+                    <img src="" alt="" class="hidden" />
+                    <div class="message-flex">
+                        <div class="message">
+                            <h2 class="alert">Wild pokemon appeared!</h2>
+                            <div class="side_by_side">
+                                <h2 class="count_title name">Name:</h2>
+                                <h2 class="count_title types">Types:</h2>
+                                <h2 class="count_title weight">Weight:</h2>
+                                <h2 class="count_title height">Height:</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-flex">
+                <div class="d-pad">
+                    <button class="disabled-button" disabled></button>
+                    <button class="up">^</button>
+                    <button class="disabled-button" disabled></button>
+                    <button class="left"> < </button>
+                    <button class="disabled-button" disabled></button>
+                    <button class="right">></button>
+                    <button class="disabled-button" disabled></button>
+                    <button class="down">v</button>
+                    <button class="disabled-button" disabled></button>
+                </div>
+                <div class="tap-buttons">
+                    <button class="circle random">B</button>
+                    <button class="circle show">A</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--js script for gameboy functionality below-->
+    <script>
+        var name;
+        var sprites;
+        var types;
+        var weight;
+        var height;
+        var typeArray;
+        var api = "https://pokeapi.co/api/v2/pokemon/";
+        function randomizer(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        $(".random").click(function () {
+            $("img").addClass("hidden");
+            $(".side_by_side").hide();
+            $.get(api + randomizer(1, 151), function (data) {
+                console.log(data);
+                name = data.name[0].toUpperCase() + data.name.slice(1);
+                sprites = data.sprites;
+                types = data.types;
+                weight = data.weight;
+                height = data.height;
+                var typeArray = [];
+                for (var i = 0; i < types.length; i++) {
+                    var title = types[i].type.name;
+                    typeArray.push(title[0].toUpperCase() + title.slice(1));
+                }
+                types = typeArray.join(", ");
+                $("img").attr("src", sprites.front_default);
+                $(".name").text("Name: " + name);
+                $(".types").text("Types: " + types);
+                $(".height").text("Height: " + height);
+                $(".weight").text("Weight: " + weight);
+                $(".alert").show();
+            });
+        });
+        $(".random").trigger("click");
+        $(".show").click(function () {
+            $("img").removeClass("hidden");
+            $(".side_by_side").show();
+            $(".alert").hide();
+        });
+        var dictionary = {
+            up: "back_default",
+            left: "back_shiny",
+            right: "front_shiny",
+            down: "front_default",
+        };
+        $(".d-pad button").click(function () {
+            console.log(sprites);
+            $("img").attr("src", sprites[dictionary[$(this).attr("class")]]);
+        });
+    </script>
+</body>
+
+</html>

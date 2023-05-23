@@ -1,0 +1,220 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-image: url("pokemon.png");
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    /* color: black; */
+    font-size: 40px;
+    margin: 5vw;
+    text-align: center;
+    display: block;
+    background-image: linear-gradient(-225deg,
+            #6e1cb1 0%,
+            #0b16b8 25%,
+            #eb13ff 50%,
+            #00ffff 100%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 6s linear infinite;
+}
+
+img {
+    display: block;
+    width: 32vw;
+    /* height: 37vw; */
+    margin: auto;
+}
+
+
+.side_by_side {
+    display: none;
+}
+
+.screen {
+    width: 63vw;
+    height: 180px;
+    padding: 0px;
+    border: 1px solid black;
+    display: block;
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+}
+
+.frame {
+    width: 63.5vw;
+    height: 181px;
+    padding: 5vw 8vw;
+    margin: 0 0 5vw 0;
+    border: 1px solid black;
+    display: block;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.console {
+    background-color: rgb(121, 42, 248);
+    width: 80vw;
+    border-radius: 5px;
+    height: 439px;
+    margin: 0vw 5vw 5vw 5vw;
+    padding: 5vw;
+    display: inline-block;
+}
+
+.circle {
+    background-color: black;
+    font-size: 50px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid black;
+    font-size: 10px;
+    color: white;
+    border-color: black;
+}
+
+.up,
+.down,
+.left,
+.right {
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    border-color: black;
+}
+
+.alert {
+    font-family: 'Press Start 2P', cursive;
+    color: black;
+    margin: 1px;
+    font-size: 10px;
+}
+
+.message {
+    display: block;
+    border: 5px double black;
+    position: absolute;
+    bottom: 0;
+    width: 97%;
+    text-align: center;
+}
+
+.message-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.count_title {
+    font-family: 'Press Start 2P', cursive;
+    color: black;
+    font-size: 10px;
+}
+
+#counter {
+    display: inline-block;
+    font-family: 'Press Start 2P', cursive;
+    color: black;
+    font-size: 24px;
+    height: 24px;
+}
+
+#test {
+    color: black;
+}
+
+.hidden {
+    filter: brightness(0);
+}
+
+.button-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.d-pad {
+    width: 150px;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.d-pad button {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: large;
+}
+
+.tap-buttons {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    height: 50px;
+    width: 100px;
+}
+
+.random,
+.show {
+    position: absolute;
+}
+
+.show {
+    right: 0;
+    top: 0;
+}
+
+.random {
+    right: 40px;
+    top: 40px;
+}
+
+.disabled-button {
+    visibility: hidden;
+}
+
+@media (min-width: 400px) {
+    .console {
+        width: 320px;
+        padding: 20px;
+        margin: 0px 20px 20px 20px;
+    }
+
+    .frame {
+        width: 254px;
+        padding: 20px 32px;
+    }
+
+    .screen {
+        width: 252px;
+    }
+
+    img {
+        width: 128px;
+    }
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
